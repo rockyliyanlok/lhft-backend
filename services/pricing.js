@@ -35,7 +35,7 @@ const PricingService = ()  => {
   /**
    * Start the pricing service to randomize price for the symbols in the config file
    */
-  const start = () => {
+  const start = app => {
     debug('start()')
     if (updateInterval) {
       clearInterval(updateInterval)
@@ -47,6 +47,7 @@ const PricingService = ()  => {
       debug({
         symbolsWithPrice
       })
+      app.get('services/client').broadcast(symbolsWithPrice)
     }, updateFrequencyMilliseconds)
   }
 
