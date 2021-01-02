@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "PORT=3001 node ./bin/www",
+    "start": "node ./bin/www",
     "eslint": "node_modules/eslint/bin/eslint.js --ext .js ."
   },
   "dependencies": {
