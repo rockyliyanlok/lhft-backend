@@ -30,6 +30,7 @@ const ClientService = ()  => {
    */
   const broadcast = data => {
     clients.forEach(client => {
+      // event stream format `data: ${message}\n\n`
       client.res.write(`data: ${JSON.stringify(data)}\n\n`) 
     })
   }

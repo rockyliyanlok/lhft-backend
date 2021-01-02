@@ -3,7 +3,9 @@ var cookieParser = require('cookie-parser')
 var cors = require('cors')
 var logger = require('morgan')
 
-var indexRouter = require('./routes/index')
+var errorHandler = require('./middleware/errorHandler')
+
+var configRouter = require('./routes/config')
 var subscribeRouter = require('./routes/subscribe')
 
 var app = express()
@@ -14,11 +16,13 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cors())
 app.use(cookieParser())
 
-app.set('services/pricing', require('./services/pricing')())
+app.set('services/pricing', require('./services/pricing')(app))
 app.set('services/client', require('./services/client')())
 
-app.use('/', indexRouter)
+app.use('/config', configRouter)
 app.use('/subscribe', subscribeRouter)
+
+app.use(errorHandler())
 
 app.get('services/pricing').start(app)
 
