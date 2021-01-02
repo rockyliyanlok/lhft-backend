@@ -1,0 +1,14 @@
+{
+  "symbols": [
+    "AAAA",
+    "BBBB",
+    "CCCC",
+    "DDDD",
+    "EEEE",
+    "FFFF",
+    "GGGG",
+    "HHHH"
+  ],
+  "update_frequency_milliseconds": 300,
+  "elements_per_update": 50
+ }

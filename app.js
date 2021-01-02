@@ -11,6 +11,10 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
+app.set('services/pricing', require('./services/pricing')())
+
 app.use('/', indexRouter)
+
+app.get('services/pricing').start()
 
 module.exports = app
