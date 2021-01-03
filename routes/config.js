@@ -4,6 +4,14 @@ const { StatusCodes } = require('http-status-codes')
 
 const router = express.Router()
 
+router.get('/', (req, res) => {
+  const config = req.app.get('services/pricing').getConfig()
+  return res.status(StatusCodes.OK).json({
+    status: StatusCodes.OK,
+    config
+  })
+})
+
 router.post('/', (req, res, next) => {
   // parse params from body
   const {
@@ -36,7 +44,7 @@ router.post('/', (req, res, next) => {
     const err = new Error(message)
     return next(err)
   } else {
-    const config = req.app.get('services/pricing').updateConfig(Object.assign({},
+    const config = req.app.get('services/pricing').setConfig(Object.assign({},
       !isNil(symbols) && { symbols },
       !isNil(updateFrequencyMilliseconds) && { updateFrequencyMilliseconds },
       !isNil(elementsPerUpdate) && { elementsPerUpdate }
