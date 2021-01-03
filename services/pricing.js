@@ -67,7 +67,7 @@ const PricingService = app  => {
     start()
   }
 
-  const updateConfig = newConfig => {
+  const setConfig = newConfig => {
     const mergedConfig = Object.assign({},
       config,
       newConfig
@@ -76,17 +76,26 @@ const PricingService = app  => {
     // skip service restart if config is not changed
     if (!deepEqual(mergedConfig, config)) {
       config = mergedConfig
-      debug('updateConfig()', { config })
+      debug('setConfig()', { config })
       restart()
     }
 
     return config
   }
 
+  const getConfig = () => {
+    return {
+      symbols: config.symbols,
+      update_frequency_milliseconds: config.updateFrequencyMilliseconds,
+      elements_per_update: config.elementsPerUpdate
+    }
+  }
+
   return {
     start,
     stop,
-    updateConfig,
+    setConfig,
+    getConfig
   }
 }
 
