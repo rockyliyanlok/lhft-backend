@@ -9,6 +9,6 @@
     "GGGG",
     "HHHH"
   ],
-  "update_frequency_milliseconds": 300,
+  "update_frequency_milliseconds": 1000,
   "elements_per_update": 50
  }
