@@ -47,6 +47,7 @@ const PricingService = app  => {
       const symbolsWithPrice = randomizePrice(updateSymbols)
 
       app.get('services/client').broadcast(symbolsWithPrice)
+      app.get('services/mongoose').pushData(symbolsWithPrice)
     }, config.updateFrequencyMilliseconds)
   }
 
